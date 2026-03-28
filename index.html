@@ -176,8 +176,7 @@
         msg.textContent = 'ka-ching!';
         msg.className = 'msg ok';
         setTimeout(() => {
-          lock.style.display = 'none';
-          home.style.display = 'flex';
+          window.location.href = 'photos.html';
         }, 1000);
       } else {
         input.classList.remove('shake');
