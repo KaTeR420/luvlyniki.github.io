@@ -81,13 +81,19 @@
       box-shadow: 0 4px 18px rgba(0,0,0,0.13);
     }
 
-    .photo-wrap .caption {
-      text-align: center;
-      font-size: 28px;
-      color: #fff;
-      margin-top: 0.4rem;
-      text-shadow: 0 1px 4px rgba(0,0,0,0.1);
-    }
+.photo-wrap {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.photo-wrap .caption {
+  font-size: 28px;
+  color: #fff;
+  max-width: 140px;
+  text-shadow: 0 1px 4px rgba(0,0,0,0.1);
+  line-height: 1.2;
+}
 
     .photo-wrap:nth-child(4n+1) { transform: rotate(-4deg); }
     .photo-wrap:nth-child(4n+2) { transform: rotate(3deg);  }
