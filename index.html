@@ -1,12 +1,208 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>My Website</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Welcome</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500&family=Lato:wght@300;400&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: #f5f3ef;
+      font-family: 'Lato', sans-serif;
+      padding: 1.5rem;
+    }
+
+    .card {
+      background: #ffffff;
+      border: 1px solid rgba(0,0,0,0.08);
+      border-radius: 16px;
+      padding: 2.75rem 2.5rem 2.25rem;
+      width: 100%;
+      max-width: 400px;
+      text-align: center;
+      box-shadow: 0 2px 24px rgba(0,0,0,0.06);
+    }
+
+    .lock-icon {
+      width: 48px;
+      height: 48px;
+      margin: 0 auto 1.5rem;
+      color: #aaa;
+    }
+
+    .title {
+      font-family: 'Playfair Display', serif;
+      font-size: 24px;
+      font-weight: 400;
+      color: #1a1a1a;
+      margin-bottom: 0.4rem;
+      letter-spacing: 0.01em;
+    }
+
+    .subtitle {
+      font-size: 13px;
+      color: #888;
+      font-weight: 300;
+      margin-bottom: 1.75rem;
+      letter-spacing: 0.03em;
+    }
+
+    .pw-input {
+      width: 100%;
+      padding: 11px 16px;
+      font-size: 15px;
+      font-family: 'Lato', sans-serif;
+      font-weight: 300;
+      letter-spacing: 0.04em;
+      border: 1px solid #ddd;
+      border-radius: 10px;
+      background: #faf9f7;
+      color: #1a1a1a;
+      outline: none;
+      text-align: center;
+      margin-bottom: 0.75rem;
+      transition: border-color 0.2s;
+    }
+    .pw-input:focus { border-color: #999; }
+    .pw-input.shake {
+      animation: shake 0.35s ease;
+      border-color: #E24B4A;
+    }
+    .pw-input.success { border-color: #1D9E75; }
+
+    @keyframes shake {
+      0%,100% { transform: translateX(0); }
+      20% { transform: translateX(-6px); }
+      40% { transform: translateX(6px); }
+      60% { transform: translateX(-4px); }
+      80% { transform: translateX(4px); }
+    }
+
+    .enter-btn {
+      width: 100%;
+      padding: 11px 16px;
+      font-size: 13px;
+      font-family: 'Lato', sans-serif;
+      font-weight: 400;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      border: 1px solid #ddd;
+      border-radius: 10px;
+      background: transparent;
+      color: #333;
+      cursor: pointer;
+      transition: background 0.18s, transform 0.1s;
+    }
+    .enter-btn:hover { background: #f5f3ef; }
+    .enter-btn:active { transform: scale(0.98); }
+
+    .msg {
+      font-size: 12px;
+      margin-top: 0.85rem;
+      min-height: 18px;
+      letter-spacing: 0.02em;
+    }
+    .msg.error { color: #A32D2D; }
+    .msg.hint  { color: #aaa; }
+    .msg.ok    { color: #0F6E56; }
+
+    .home-screen {
+      display: none;
+      flex-direction: column;
+      align-items: center;
+      gap: 1rem;
+      text-align: center;
+      animation: fadeIn 0.6s ease;
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(8px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+    .home-screen .welcome {
+      font-family: 'Playfair Display', serif;
+      font-size: 28px;
+      font-weight: 400;
+      color: #1a1a1a;
+      letter-spacing: 0.01em;
+    }
+    .home-screen .tagline {
+      font-size: 14px;
+      color: #888;
+      font-weight: 300;
+      letter-spacing: 0.05em;
+    }
+    .heart {
+      font-size: 32px;
+      animation: pulse 1.6s ease infinite;
+    }
+    @keyframes pulse {
+      0%,100% { transform: scale(1); }
+      50% { transform: scale(1.15); }
+    }
+  </style>
 </head>
 <body>
-  <h1>Hello World</h1>
-  <p>My website is live!</p>
+
+  <div class="card">
+
+    <!-- Lock screen -->
+    <div id="lockCard">
+      <svg class="lock-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+        <rect x="3" y="11" width="18" height="11" rx="2" ry="2"/>
+        <path d="M7 11V7a5 5 0 0 1 10 0v4"/>
+      </svg>
+      <div class="title">Welcome</div>
+      <div class="subtitle">Enter the passphrase to continue</div>
+      <input class="pw-input" id="pwInput" type="text" placeholder="Your passphrase…" autocomplete="off" spellcheck="false" />
+      <button class="enter-btn" id="enterBtn">Enter</button>
+      <div class="msg hint" id="msg">Hint: it's two names</div>
+    </div>
+
+    <!-- Home screen -->
+    <div class="home-screen" id="homeScreen">
+      <div class="heart">♡</div>
+      <div class="welcome">Hugo &amp; Niki</div>
+      <div class="tagline">You made it home</div>
+    </div>
+
+  </div>
+
+  <script>
+    const input = document.getElementById('pwInput');
+    const btn   = document.getElementById('enterBtn');
+    const msg   = document.getElementById('msg');
+    const lock  = document.getElementById('lockCard');
+    const home  = document.getElementById('homeScreen');
+    const PASS  = 'Hugo och Niki';
+
+    function attempt() {
+      if (input.value.trim() === PASS) {
+        input.classList.add('success');
+        msg.textContent = 'Correct!';
+        msg.className = 'msg ok';
+        setTimeout(() => {
+          lock.style.display = 'none';
+          home.style.display = 'flex';
+        }, 500);
+      } else {
+        input.classList.remove('shake');
+        void input.offsetWidth;
+        input.classList.add('shake');
+        msg.textContent = "That's not quite right. Try again.";
+        msg.className = 'msg error';
+        setTimeout(() => input.classList.remove('shake'), 400);
+      }
+    }
+
+    btn.addEventListener('click', attempt);
+    input.addEventListener('keydown', e => { if (e.key === 'Enter') attempt(); });
+  </script>
+
 </body>
 </html>
