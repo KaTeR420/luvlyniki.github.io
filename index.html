@@ -152,7 +152,7 @@
     function attempt() {
       if (input.value.trim() === PASS) {
         input.classList.add('success');
-        msg.textContent = 'there you are ♡';
+        msg.textContent = 'ka-ching!';
         msg.className = 'msg ok';
         setTimeout(() => {
           lock.style.display = 'none';
@@ -162,7 +162,7 @@
         input.classList.remove('shake');
         void input.offsetWidth;
         input.classList.add('shake');
-        msg.textContent = 'hmm, not quite — try again';
+        msg.textContent = 'inte riktigt rätt, majshuvud <3';
         msg.className = 'msg error';
         setTimeout(() => input.classList.remove('shake'), 400);
       }
