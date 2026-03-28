@@ -274,11 +274,15 @@
     });
   });
 
-  function showResult() {
+function showResult() {
+  if (score === 5) {
+    window.location.href = 'prize.html';
+  } else {
     document.getElementById('resultScore').textContent = score + ' / 5 rätt';
     document.getElementById('resultMsg').textContent = messages[score];
     document.getElementById('resultScreen').classList.add('active');
   }
+}
 </script>
 
 </body>
