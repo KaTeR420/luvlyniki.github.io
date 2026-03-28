@@ -1,1 +1,290 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>N+H Quiz ♡</title>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Tangerine|Inconsolata|Droid+Sans">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
+    body {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: #F8C8DC;
+      font-family: 'Droid+Sans', serif;
+      padding: 2rem 1.5rem;
+    }
+
+    .card {
+      width: 100%;
+      max-width: 420px;
+      text-align: center;
+    }
+
+    h1 {
+      font-size: 64px;
+      color: #fff;
+      font-weight: 400;
+      margin-bottom: 0.2rem;
+    }
+
+    .subtitle {
+      font-size: 28px;
+      color: rgba(255,255,255,0.75);
+      margin-bottom: 2.5rem;
+    }
+
+    .question-box {
+      display: none;
+    }
+    .question-box.active {
+      display: block;
+      animation: fadeIn 0.4s ease;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(8px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    .progress {
+      font-size: 24px;
+      color: rgba(255,255,255,0.6);
+      margin-bottom: 0.5rem;
+    }
+
+    .question-text {
+      font-size: 38px;
+      color: #fff;
+      margin-bottom: 1.5rem;
+      line-height: 1.2;
+    }
+
+    .options {
+      display: flex;
+      flex-direction: column;
+      gap: 0.65rem;
+    }
+
+    .opt-btn {
+      padding: 10px 18px;
+      font-size: 28px;
+      font-family: 'Droid+Sans', serif;
+      border: 1.5px solid #f0a0bf;
+      border-radius: 50px;
+      background: #fff;
+      color: #c06080;
+      cursor: pointer;
+      transition: background 0.15s, transform 0.1s;
+    }
+    .opt-btn:hover { background: #fce8f0; }
+    .opt-btn:active { transform: scale(0.98); }
+    .opt-btn.correct {
+      background: #d4f0e0;
+      border-color: #70b090;
+      color: #3a7a5a;
+    }
+    .opt-btn.wrong {
+      background: #f7d5d5;
+      border-color: #e07070;
+      color: #a04040;
+    }
+    .opt-btn:disabled { cursor: default; }
+
+    .feedback {
+      font-size: 32px;
+      margin-top: 1rem;
+      min-height: 40px;
+      color: #fff;
+    }
+
+    .next-btn {
+      margin-top: 1.25rem;
+      padding: 10px 32px;
+      font-size: 28px;
+      font-family: 'Droid+Sans', serif;
+      border: 1.5px solid #f0a0bf;
+      border-radius: 50px;
+      background: #fff;
+      color: #c06080;
+      cursor: pointer;
+      display: none;
+      transition: background 0.15s, transform 0.1s;
+    }
+    .next-btn:hover { background: #fce8f0; }
+    .next-btn:active { transform: scale(0.98); }
+    .next-btn.visible { display: inline-block; }
+
+    /* Result screen */
+    .result-screen {
+      display: none;
+      flex-direction: column;
+      align-items: center;
+      gap: 1rem;
+      animation: fadeIn 0.6s ease;
+    }
+    .result-screen.active { display: flex; }
+
+    .result-heart {
+      font-size: 52px;
+      animation: pulse 1.6s ease infinite;
+    }
+    @keyframes pulse {
+      0%,100% { transform: scale(1); }
+      50% { transform: scale(1.12); }
+    }
+
+    .result-score {
+      font-size: 52px;
+      color: #fff;
+    }
+
+    .result-msg {
+      font-size: 36px;
+      color: #fff;
+      max-width: 340px;
+      line-height: 1.3;
+    }
+  </style>
+</head>
+<body>
+
+<div class="card">
+
+  <h1>Hugo & Niki</h1>
+  <div class="subtitle">hur väl känner du mig? ♡</div>
+
+  <!-- Q1 -->
+  <div class="question-box active" data-answer="1">
+    <div class="progress">1 / 5</div>
+    <div class="question-text">Vilket datum blev vi tillsammans?</div>
+    <div class="options">
+      <button class="opt-btn" data-index="0">24e Oktober 2025</button>
+      <button class="opt-btn" data-index="1">25e Oktober 2025</button>
+      <button class="opt-btn" data-index="2">25e November 2025</button>
+    </div>
+    <div class="feedback"></div>
+    <button class="next-btn">nästa →</button>
+  </div>
+
+  <!-- Q2 -->
+  <div class="question-box" data-answer="2">
+    <div class="progress">2 / 5</div>
+    <div class="question-text">När gav jag dig gosedjuret Fluff?</div>
+    <div class="options">
+      <button class="opt-btn" data-index="0">3 månaders</button>
+      <button class="opt-btn" data-index="1">1 månads</button>
+      <button class="opt-btn" data-index="2">Jul</button>
+    </div>
+    <div class="feedback"></div>
+    <button class="next-btn">nästa →</button>
+  </div>
+
+  <!-- Q3 -->
+  <div class="question-box" data-answer="2">
+    <div class="progress">3 / 5</div>
+    <div class="question-text">Vilket datum träffades vi för första gången?</div>
+    <div class="options">
+      <button class="opt-btn" data-index="0">12 Augusti</button>
+      <button class="opt-btn" data-index="1">10 Augusti</button>
+      <button class="opt-btn" data-index="2">11 Augusti</button>
+    </div>
+    <div class="feedback"></div>
+    <button class="next-btn">nästa →</button>
+  </div>
+
+  <!-- Q4 -->
+  <div class="question-box" data-answer="0">
+    <div class="progress">4 / 5</div>
+    <div class="question-text">Vad heter min yngsta katt?</div>
+    <div class="options">
+      <button class="opt-btn" data-index="0">McFlurry</button>
+      <button class="opt-btn" data-index="1">Kenzo</button>
+      <button class="opt-btn" data-index="2">Elsa</button>
+    </div>
+    <div class="feedback"></div>
+    <button class="next-btn">nästa →</button>
+  </div>
+
+  <!-- Q5 -->
+  <div class="question-box" data-answer="1">
+    <div class="progress">5 / 5</div>
+    <div class="question-text">När fyller jag år?</div>
+    <div class="options">
+      <button class="opt-btn" data-index="0">20de Juni</button>
+      <button class="opt-btn" data-index="1">30de Juni</button>
+      <button class="opt-btn" data-index="2">29de Juni</button>
+    </div>
+    <div class="feedback"></div>
+    <button class="next-btn">se resultat ♡</button>
+  </div>
+
+  <!-- Result -->
+  <div class="result-screen" id="resultScreen">
+    <div class="result-heart">♡</div>
+    <div class="result-score" id="resultScore"></div>
+    <div class="result-msg" id="resultMsg"></div>
+  </div>
+
+</div>
+
+<script>
+  const questions = document.querySelectorAll('.question-box');
+  let current = 0;
+  let score = 0;
+
+  const messages = {
+    5: "Alla rätt! Dags för ett pris kanske?",
+    4: "Nästan perfekt, men varför inte perfekt huh?",
+    3: "Bättre än så kan du ju!",
+    2: "Bättre än så kan du ju!",
+    1: "Nu vill jag ha en förklaring här.",
+    0: "Påriktigt? No crack på en hel månad asså."
+  };
+
+  questions.forEach(qBox => {
+    const correct = parseInt(qBox.dataset.answer);
+    const btns = qBox.querySelectorAll('.opt-btn');
+    const feedback = qBox.querySelector('.feedback');
+    const nextBtn = qBox.querySelector('.next-btn');
+
+    btns.forEach(btn => {
+      btn.addEventListener('click', () => {
+        btns.forEach(b => b.disabled = true);
+        const chosen = parseInt(btn.dataset.index);
+        if (chosen === correct) {
+          btn.classList.add('correct');
+          feedback.textContent = 'Rätt!';
+          score++;
+        } else {
+          btn.classList.add('wrong');
+          btns[correct].classList.add('correct');
+          feedback.textContent = 'Fel!';
+        }
+        nextBtn.classList.add('visible');
+      });
+    });
+
+    nextBtn.addEventListener('click', () => {
+      qBox.classList.remove('active');
+      current++;
+      if (current < questions.length) {
+        questions[current].classList.add('active');
+      } else {
+        showResult();
+      }
+    });
+  });
+
+  function showResult() {
+    document.getElementById('resultScore').textContent = score + ' / 5 rätt';
+    document.getElementById('resultMsg').textContent = messages[score];
+    document.getElementById('resultScreen').classList.add('active');
+  }
+</script>
+
+</body>
+</html>
