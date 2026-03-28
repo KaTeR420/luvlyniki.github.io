@@ -126,12 +126,7 @@
       gap: 1rem;
       animation: fadeIn 0.6s ease;
     }
-    .result-screen.active { display: flex; }
 
-    .result-heart {
-      font-size: 52px;
-      animation: pulse 1.6s ease infinite;
-    }
     @keyframes pulse {
       0%,100% { transform: scale(1); }
       50% { transform: scale(1.12); }
@@ -224,7 +219,6 @@
 
   <!-- Result -->
   <div class="result-screen" id="resultScreen">
-    <div class="result-heart">♡</div>
     <div class="result-score" id="resultScore"></div>
     <div class="result-msg" id="resultMsg"></div>
   </div>
