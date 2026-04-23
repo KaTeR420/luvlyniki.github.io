@@ -7,7 +7,6 @@
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Tangerine|Inconsolata|Droid+Sans">
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
     body {
       min-height: 100vh;
       display: flex;
@@ -18,7 +17,6 @@
       padding: 2rem 1.5rem;
       text-align: center;
     }
-
     .card {
       width: 100%;
       max-width: 420px;
@@ -28,12 +26,10 @@
       gap: 1.25rem;
       animation: fadeIn 0.7s ease;
     }
-
     @keyframes fadeIn {
       from { opacity: 0; transform: translateY(10px); }
       to   { opacity: 1; transform: translateY(0); }
     }
-
     .trophy {
       font-size: 80px;
       animation: bounce 1.8s ease infinite;
@@ -42,36 +38,30 @@
       0%,100% { transform: translateY(0); }
       50%      { transform: translateY(-10px); }
     }
-
     h1 {
       font-size: 72px;
       color: #fff;
       font-weight: 400;
     }
-
     .subtitle {
       font-size: 32px;
       color: rgba(255,255,255,0.8);
     }
-
     .divider {
       width: 60px;
       height: 1.5px;
       background: rgba(255,255,255,0.5);
       border-radius: 2px;
     }
-
     .prize-text {
       font-size: 36px;
       color: #fff;
       line-height: 1.4;
       max-width: 360px;
-  
     }
   </style>
 </head>
 <body>
-
   <div class="card">
     <div class="trophy"></div>
     <h1>Grattis!</h1>
@@ -80,7 +70,10 @@
     <div class="prize-text">
       Unlimited 24h crack pass
     </div>
+    <a href="videos.html" style="text-decoration:none; display:inline-flex; align-items:center; gap:0.5rem; margin-top:1rem;">
+      <span style="font-size:36px; color:#fff; text-shadow:0 1px 4px rgba(0,0,0,0.1);">fortsätt</span>
+      <span style="font-size:48px; color:#fff; text-shadow:0 1px 4px rgba(0,0,0,0.1);">→</span>
+    </a>
   </div>
-
 </body>
 </html>
