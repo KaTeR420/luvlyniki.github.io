@@ -1,1 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>N+H Videos ♡</title>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Tangerine">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
+    body {
+      min-height: 100vh;
+      background: #F8C8DC;
+      font-family: 'Tangerine', serif;
+      padding: 3rem 1.5rem 6rem;
+      overflow-x: hidden;
+    }
+
+    h1 {
+      text-align: center;
+      font-size: 72px;
+      color: #fff;
+      font-weight: 400;
+      margin-bottom: 0.2rem;
+    }
+
+    .subtitle {
+      text-align: center;
+      font-size: 32px;
+      color: rgba(255,255,255,0.75);
+      margin-bottom: 3rem;
+    }
+
+    .video-list {
+      max-width: 640px;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      gap: 3rem;
+    }
+
+    .video-item {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.75rem;
+      animation: fadeIn 0.5s ease;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(8px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    .video-item video {
+      width: 100%;
+      max-width: 600px;
+      border: 5px solid #fff;
+      border-radius: 8px;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+      background: #000;
+    }
+
+    .video-caption {
+      font-size: 34px;
+      color: #fff;
+      text-shadow: 0 1px 4px rgba(0,0,0,0.1);
+      text-align: center;
+    }
+
+    /* AVI fallback notice */
+    .avi-notice {
+      font-size: 22px;
+      color: rgba(255,255,255,0.7);
+      text-align: center;
+      max-width: 500px;
+      margin: 0 auto;
+      line-height: 1.4;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Hugo & Niki</h1>
+  <div class="subtitle"></div>
+
+  <div class="video-list">
+
+    <!--
+      För att lägga till en video:
+      1. Ladda upp videofilen i samma mapp som denna fil
+      2. Kopiera ett "video-item" block nedan
+      3. Ändra src till ditt filnamn (t.ex. video1.mp4 eller video1.avi)
+      4. Ändra caption-texten
+
+      OBS: AVI-filer kanske inte funkar i alla webbläsare.
+      Konvertera gärna till MP4 för bäst kompatibilitet.
+    -->
+
+    <!-- Video 1 -->
+    <div class="video-item">
+      <video controls playsinline>
+        <source src="DSCF9948.mp4" type="video/mp4" />
+        <source src="video1.avi" type="video/x-msvideo" />
+        Din webbläsare stödjer inte detta videoförmat.
+      </video>
+      <div class="video-caption"></div>
+    </div>
+
+    <!-- Video 2 -->
+    <div class="video-item">
+      <video controls playsinline>
+        <source src="DSCF9949.mp4" type="video/mp4" />
+        <source src="video2.avi" type="video/x-msvideo" />
+        Din webbläsare stödjer inte detta videoförmat.
+      </video>
+      <div class="video-caption"></div>
+    </div>
+
+    <!-- Video 3 -->
+    <div class="video-item">
+      <video controls playsinline>
+        <source src="DSCF9980.mp4" type="video/mp4" />
+        <source src="video3.avi" type="video/x-msvideo" />
+        Din webbläsare stödjer inte detta videoförmat.
+      </video>
+      <div class="video-caption">svär han sjunger fitta</div>
+    </div>
+
+
+  </div>
+
+
+</body>
+</html>
